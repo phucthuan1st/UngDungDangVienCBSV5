@@ -1,90 +1,108 @@
-# Organization Management Website
-<br>
+# CBSV5 Application - Ung Dung Dang Vien CBSV5
 
-## Table of Contents
-
-- [Overview](#overview)
+**Table of Contents**
+- [Installation](#installation)
+  - [Using Yarn](#using-yarn)
 - [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Contributing](#contributing)
+- [Usage](#usage)
+  - [Client](#client)
+  - [Server](#server)
+- [Contribution](#contribution)
 - [License](#license)
 
-<br>
-
 ## Overview
+This repository contains the source code for the CBSV5 application, organized into client and server components, built using the following technologies:
+- **Client**: React + Redux Toolkit
+- **Server**: Express JS
+- **Database**: CockroachDB (compatible with Postgre and MySQL)
 
-This repository contains the source code for an organization management website. The application is built using React for the frontend, .NET for the backend, and MySQL (or MariaDB) for the database.
+## Installation
+Ensure you have [nvm](https://github.com/nvm-sh/nvm) installed. Use the following command to install the LTS version of Node.js:
+```bash
+nvm install --lts
+```
 
-<br>
+### Using Yarn
+To use Yarn instead of npm, first, make sure you have [Yarn](https://yarnpkg.com/) installed globally:
+```bash
+npm install -g yarn
+```
+
+Then, install dependencies for both client and server using:
+```bash
+cd UngDungDangVienCBSV5/Client
+yarn install
+
+cd ../Server
+yarn install
+```
 
 ## Features
+1. **Activity Statistics in CBSV5**
+   - Monitor and analyze activity trends.
 
-- **User Management**: Manage user accounts and permissions.
-- **Organization Structure**: View and modify the organizational hierarchy.
-- **Data Persistence**: Data is stored in a MySQL (or MariaDB) database for reliability.
+2. **Members in CBSV5**
+   - View the list of members in CBSV5.
 
-<br>
+3. **Candidates in CBSV5**
+   - Access the list of candidates in CBSV5.
 
-## Tech Stack
+4. **Access Important Documents**
+   - Navigate critical documents seamlessly.
 
-- **Frontend**: React
-- **Backend**: .NET
-- **Database**: MySQL (or MariaDB)
+5. **Form Submission and PDF Export**
+   - Fill forms and generate PDFs based on form results.
 
-<br>
+6. **Spreadsheet Statistics from Form Results**
+   - Generate statistical spreadsheets based on form submissions.
 
-## Getting Started
+7. **Explore CBSV5 Resources**
+   - Access a variety of resources related to CBSV5.
 
-### Prerequisites
+8. **Restricted Access Features**
+   - Features and utilities with limited access, based on user roles.
 
-- Node.js for React development: [Node.js](https://nodejs.org/)
-- .NET SDK for backend development: [.NET SDK](https://dotnet.microsoft.com/download)
-- MySQL or MariaDB: [MySQL](https://www.mysql.com/) or [MariaDB](https://mariadb.org/)
+9. **Admin Session for Role Management**
+   - Manage user roles and permissions through an admin session.
 
-### Installation
+10. **Activity Logging**
+    - Log all user activities for audit purposes.
 
-1. Clone the repository:
+## Usage
+### Client
+1. Navigate to the client directory:
+   ```bash
+   cd UngDungDangVienCBSV5/Client
+   ```
 
-```bash
-git clone https://github.com/phucthuan1st/organization-management.git
-cd organization-management
-```
-2. Install frontend dependencies:
-```bash
-cd client
-npm install
-```
-4. Install backend dependencies:
-```bash
-cd ../server
-dotnet restore
-```
-5. Configure the database:
-- Create a new database in MySQL or MariaDB.
-- Update the connection string in appsettings.json in the backend folder.
-6. Run the application:
-- Start the frontend:
-```bash
-cd ../client
-npm start
-```
-- Start the backend:
-```bash
-cd ../server
-dotnet run
-```
-- Open the application in your browser: http://localhost:3000
-<br>
+2. Install client dependencies:
+   ```bash
+   yarn install
+   ```
 
-## Contributing
-Contributions are welcome! Please follow our contribution guidelines.
+3. Run the client application:
+   ```bash
+   yarn start
+   ```
 
-<br>
+### Server
+1. Navigate to the server directory:
+   ```bash
+   cd UngDungDangVienCBSV5/Server
+   ```
+
+2. Install server dependencies:
+   ```bash
+   yarn install
+   ```
+
+3. Run the server:
+   ```bash
+   yarn start
+   ```
+
+## Contribution
+Contributions are welcome. Please follow the [contribution guidelines](CONTRIBUTING.md).
 
 ## License
-This project is licensed under the Apache License 2.0 License - see the [LICENSE](LICENSE) file for details.
-
-<strong>Please keep the LICENSE in any cases.</strong>
+This project is licensed under the [Apache License 2.0](LICENSE).
