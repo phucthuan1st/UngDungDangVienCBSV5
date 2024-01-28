@@ -1,4 +1,3 @@
-// AuthContext.js
 import React, { createContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
@@ -7,31 +6,22 @@ const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     useEffect(() => {
-        // Check for existing JWT token upon app start
-        const token = document.cookie.replace(/(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/, "$1");
-        if (token) {
-            // Send token to backend for verification
-            verifyToken(token);
-        }
-    }, []);
-
-    const verifyToken = async (token) => {
-        try {
-            const response = await fetch('/verify-token', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ token }),
-            });
-            const data = await response.json();
-            if (data.authenticated) {
-                setIsAuthenticated(true);
+        // Check for existing authentication upon app start
+        const checkAuthentication = async () => {
+            try {
+                const response = await fetch('/verify-token', {
+                    method: 'POST',
+                    credentials: 'include' // Include cookies in the request
+                });
+                const data = await response.json();
+                setIsAuthenticated(data.authenticated);
+            } catch (error) {
+                console.error('Error verifying authentication:', error);
             }
-        } catch (error) {
-            console.error('Error verifying token:', error);
-        }
-    };
+        };
+
+        checkAuthentication();
+    }, []);
 
     const login = async (credentials) => {
         try {
@@ -41,22 +31,25 @@ const AuthProvider = ({ children }) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(credentials),
+                credentials: 'include' // Include cookies in the request
             });
             const data = await response.json();
-            if (data.authenticated) {
-                // Set HTTP-only cookie with token
-                document.cookie = `token=${data.token}; Secure; HttpOnly; SameSite=Strict`;
-                setIsAuthenticated(true);
-            }
+            setIsAuthenticated(data.authenticated);
         } catch (error) {
             console.error('Login error:', error);
         }
     };
 
-    const logout = () => {
-        // Remove HTTP-only cookie
-        document.cookie = 'token=; Max-Age=0; Secure; HttpOnly; SameSite=Strict';
-        setIsAuthenticated(false);
+    const logout = async () => {
+        try {
+            await fetch('/logout', {
+                method: 'POST',
+                credentials: 'include' // Include cookies in the request
+            });
+            setIsAuthenticated(false);
+        } catch (error) {
+            console.error('Logout error:', error);
+        }
     };
 
     return (

@@ -1,9 +1,6 @@
 @import "./reset.css";
 
-body {
-  margin: 0;
-  font-family: "Be Vietnam Pro";
-  font-size: 14px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+    font-family: "Be Vietnam Pro";
+    font-size: 16px;
 }

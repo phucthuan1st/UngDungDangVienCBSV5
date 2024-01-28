@@ -4,8 +4,12 @@ import LoginPage from "./pages/LoginPage";
 import AppPage from "./pages/AppPage";
 import  ErrorPage from "./pages/ErrorPage";
 import { AuthProvider, AuthContext } from './services/AuthContext';
+import "./styles/common.css";
+
+import axios from 'axios';
 
 const App = () => {
+
     const PrivateWrapper = () => {
         const { isAuthenticated } = useContext(AuthContext);
 

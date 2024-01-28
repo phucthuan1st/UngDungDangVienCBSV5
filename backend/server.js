@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
@@ -6,8 +5,10 @@ const jwt = require('jsonwebtoken');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+require('dotenv').config();
+
 // Secret key for JWT
-const JWT_SECRET_KEY = 'your-secret-key';
+const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || 'your-secret-key';
 
 // Sample users (replace with your actual user data)
 const users = [
@@ -18,22 +19,42 @@ const users = [
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+app.get('/server-status', (req, res) => {
+    res.json({ Status: "Server is running"});
+});
+
 // Login endpoint
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
     // Find user by username and password
     const user = users.find(u => u.username === username && u.password === password);
+
     if (!user) {
         return res.status(401).json({ message: 'Invalid username or password' });
     }
+
     // Generate JWT token, expired in 5 minutes
     const token = jwt.sign({ userId: user.id }, JWT_SECRET_KEY, { expiresIn: '5m' });
-    res.json({ token });
+    
+    // Set HTTP-only cookie with token
+    res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'strict' });
+    
+    res.json({ authenticated: true });
+});
+
+// Logout endpoint
+app.post('/logout', (req, res) => {
+    // Clear the token cookie
+    res.clearCookie('token');
+    res.json({ message: 'Logout successful' });
 });
 
 // Verify token middleware
 const verifyToken = (req, res, next) => {
-    const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
+    const token = req.cookies.token; // Get token from cookie
     if (!token) {
         return res.status(401).json({ message: 'No token provided' });
     }
@@ -46,8 +67,14 @@ const verifyToken = (req, res, next) => {
     });
 };
 
-// Protected route example,  for app and error or other sub route
-app.get('/protected', verifyToken, (req, res) => {
+// Route to verify JWT token
+app.post('/verify-token', verifyToken, (req, res) => {
+    // If the middleware didn't throw an error, the token is valid
+    res.json({ authenticated: true });
+});
+
+// Protected route example
+app.get('/app', verifyToken, (req, res) => {
     res.json({ message: 'Protected route accessed successfully' });
 });
 
