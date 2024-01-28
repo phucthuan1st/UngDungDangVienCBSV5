@@ -1,0 +1,9 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend Server code",
+  "main": "server.js",
+  "repository": "https://github.com/phucthuan1st/UngDungDangVienCBSV5/tree/main/backend",
+  "author": "CBSV5",
+  "license": "Apache-2.0"
+}
