@@ -19,9 +19,6 @@ const users = [
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
 
-const cookieParser = require('cookie-parser');
-app.use(cookieParser());
-
 app.get('/server-status', (req, res) => {
     res.json({ Status: "Server is running"});
 });
@@ -39,22 +36,21 @@ app.post('/login', (req, res) => {
     // Generate JWT token, expired in 5 minutes
     const token = jwt.sign({ userId: user.id }, JWT_SECRET_KEY, { expiresIn: '5m' });
     
-    // Set HTTP-only cookie with token
-    res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'strict' });
-    
-    res.json({ authenticated: true });
+    res.json({ 
+        authenticated: true,
+        token: token 
+    });
 });
 
 // Logout endpoint
 app.post('/logout', (req, res) => {
-    // Clear the token cookie
-    res.clearCookie('token');
     res.json({ message: 'Logout successful' });
 });
 
 // Verify token middleware
 const verifyToken = (req, res, next) => {
-    const token = req.cookies.token; // Get token from cookie
+    const { token } = req.body; // Get token from request
+    
     if (!token) {
         return res.status(401).json({ message: 'No token provided' });
     }
@@ -70,7 +66,9 @@ const verifyToken = (req, res, next) => {
 // Route to verify JWT token
 app.post('/verify-token', verifyToken, (req, res) => {
     // If the middleware didn't throw an error, the token is valid
-    res.json({ authenticated: true });
+    res.json({ 
+        authenticated: true 
+    });
 });
 
 // Protected route example

@@ -1,19 +1,21 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import {BrowserRouter, Routes, Route, Navigate, Outlet} from 'react-router-dom';
+import LoadingSpinner from "./components/LoadingSpinner";
 import LoginPage from "./pages/LoginPage";
 import AppPage from "./pages/AppPage";
 import  ErrorPage from "./pages/ErrorPage";
 import { AuthProvider, AuthContext } from './services/AuthContext';
 import "./styles/common.css";
 
-import axios from 'axios';
-
 const App = () => {
 
     const PrivateWrapper = () => {
-        const { isAuthenticated } = useContext(AuthContext);
+        const { isAuthenticated, isLoading } = useContext(AuthContext);
 
-        return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+        if (isLoading) {
+            return <LoadingSpinner />; // Render a loading spinner or placeholder
+        }
+        return isAuthenticated ? <Outlet /> : <Navigate to={"/login"} />;
     };
 
     return (

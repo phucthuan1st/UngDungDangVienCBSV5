@@ -4,22 +4,34 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const checkAuthentication = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                setIsAuthenticated(false);
+                setIsLoading(false);
+                return;
+            }
+
+            const response = await fetch('/verify-token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ token }),
+            });
+            const data = await response.json();
+            setIsAuthenticated(data.authenticated);
+        } catch (error) {
+            console.error('Error verifying authentication:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        // Check for existing authentication upon app start
-        const checkAuthentication = async () => {
-            try {
-                const response = await fetch('/verify-token', {
-                    method: 'POST',
-                    credentials: 'include' // Include cookies in the request
-                });
-                const data = await response.json();
-                setIsAuthenticated(data.authenticated);
-            } catch (error) {
-                console.error('Error verifying authentication:', error);
-            }
-        };
-
         checkAuthentication();
     }, []);
 
@@ -31,10 +43,12 @@ const AuthProvider = ({ children }) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(credentials),
-                credentials: 'include' // Include cookies in the request
             });
             const data = await response.json();
-            setIsAuthenticated(data.authenticated);
+            if (data.authenticated) {
+                localStorage.setItem('token', data.token);
+                await checkAuthentication();
+            }
         } catch (error) {
             console.error('Login error:', error);
         }
@@ -42,18 +56,18 @@ const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
+            localStorage.removeItem('token'); // Remove token from localStorage
+            setIsAuthenticated(false);
             await fetch('/logout', {
                 method: 'POST',
-                credentials: 'include' // Include cookies in the request
             });
-            setIsAuthenticated(false);
         } catch (error) {
             console.error('Logout error:', error);
         }
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, isLoading, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
