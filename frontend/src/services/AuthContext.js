@@ -22,6 +22,13 @@ const AuthProvider = ({ children }) => {
                 },
                 body: JSON.stringify({ token }),
             });
+
+            if (!response.ok) {
+                const error = Error(`HTTP error! status: ${response.status}`);
+                error.statusCode = response.status;
+                throw error;
+            }
+
             const data = await response.json();
             setIsAuthenticated(data.authenticated);
         } catch (error) {
@@ -36,21 +43,24 @@ const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (credentials) => {
-        try {
-            const response = await fetch('/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(credentials),
-            });
-            const data = await response.json();
-            if (data.authenticated) {
-                localStorage.setItem('token', data.token);
-                await checkAuthentication();
-            }
-        } catch (error) {
-            console.error('Login error:', error);
+        const response = await fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(credentials),
+        });
+
+        if (!response.ok) {
+            const error = Error(`HTTP error! status: ${response.status}`);
+            error.statusCode = response.status;
+            throw error;
+        }
+
+        const data = await response.json();
+        if (data.authenticated) {
+            localStorage.setItem('token', data.token);
+            await checkAuthentication();
         }
     };
 
@@ -58,9 +68,16 @@ const AuthProvider = ({ children }) => {
         try {
             localStorage.removeItem('token'); // Remove token from localStorage
             setIsAuthenticated(false);
-            await fetch('/logout', {
+            const response = await fetch('/logout', {
                 method: 'POST',
             });
+
+            if (!response.ok) {
+                const error = Error(`HTTP error! status: ${response.status}`);
+                error.statusCode = response.status;
+                throw error;
+            }
+
         } catch (error) {
             console.error('Logout error:', error);
         }

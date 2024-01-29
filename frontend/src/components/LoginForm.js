@@ -1,5 +1,4 @@
-// LoginForm.js
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import "../styles/LoginForm.css";
 import { AuthContext } from '../services/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {
     const navigate = useNavigate();
     const { login } = useContext(AuthContext);
+    const [errorMessage, setErrorMessage] = useState(null); // State to hold error message
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,8 +19,14 @@ const LoginForm = () => {
             await login(credentials);
             navigate("/app");
         } catch (error) {
-            console.error('Login error:', error);
-            // Optionally: Display error message to the user
+            console.log(error);
+            if (error.statusCode === 401) {
+                // Set error message for 403 status code
+                setErrorMessage("Sai tên tài khoản hoặc mật khẩu");
+            } else {
+                // Optionally: Handle other error cases
+                // Redirect to /error or display a generic error message
+            }
         }
     };
 
@@ -39,7 +45,9 @@ const LoginForm = () => {
                 </label> 
                 
                 <button formMethod='POST' type='submit'> Đăng nhập </button>
+                {errorMessage && <p className="error-message">{errorMessage}</p>}
             </form>
+            {/* Display error message if it exists */}
         </div>
     );
 }

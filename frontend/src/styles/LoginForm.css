@@ -16,3 +16,11 @@
 .LoginForm form {
     padding: 1rem;
 }
+
+.LoginForm form label {
+    padding: 0.5rem;
+}
+
+.LoginForm form p {
+    color: var(--red);
+}

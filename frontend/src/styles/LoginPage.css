@@ -11,7 +11,7 @@
     justify-content: center;
 }
 
-.logo {
+.LoginPage .logo {
     width: 40%;
     height: 50%;
     
@@ -23,11 +23,6 @@
 .LoginForm {
     width: 40%;
     height: 50%;
-}
-
-.logo img {
-    width: auto;
-    max-height: 90%;
 }
 
 @media(max-width: 1080px) {
