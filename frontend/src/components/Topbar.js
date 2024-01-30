@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/Topbar.css";
+import NotiButton from "../images/NotificationButtonLogo.jpg";
 
 const Topbar = () => {
     return (
@@ -18,10 +19,7 @@ const Topbar = () => {
                     />
                 </div>
                 <div className="NavButton">
-                    <img
-                        src="https://th.bing.com/th/id/R.8dbbe98c827d1ebf266f299116380ac6?rik=7VYXcY5byUlWlQ&pid=ImgRaw&r=0"
-                        alt="Notification"
-                    />
+                    <img src={NotiButton} alt="Notification" />
                 </div>
             </div>
         </div>

@@ -1,6 +1,15 @@
 import { useState, React } from "react";
+import { Routes, Route } from "react-router-dom";
 import "../styles/AppPage.css";
 import Topbar from "../components/Topbar";
+import Sidebar from "../components/Sidebar";
+import Candidates from "../components/Candidates";
+import Comrades from "../components/Comrades";
+import Dashboard from "../components/Dashboard";
+import Documents from "../components/Documents";
+import Events from "../components/Events";
+import Forms from "../components/Forms";
+import { appRoutes } from "../constants/routes";
 
 const AppPage = () => {
     return (
@@ -9,8 +18,31 @@ const AppPage = () => {
                 <Topbar />
             </div>
             <div className="ContentContainer">
-                <div className="Sidebar"></div>
-                <div className="Content"></div>
+                <div className="LeftSidebar">
+                    <Sidebar />
+                </div>
+                <div className="RightContent">
+                    <Routes>
+                        <Route
+                            path={appRoutes.CANDIDATES}
+                            element={<Candidates />}
+                        />
+                        <Route
+                            path={appRoutes.COMRADES}
+                            element={<Comrades />}
+                        />
+                        <Route
+                            path={appRoutes.DASHBOARD}
+                            element={<Dashboard />}
+                        />
+                        <Route
+                            path={appRoutes.DOCUMENTS}
+                            element={<Documents />}
+                        />
+                        <Route path={appRoutes.EVENTS} element={<Events />} />
+                        <Route path={appRoutes.FORMS} element={<Forms />} />
+                    </Routes>
+                </div>
             </div>
         </div>
     );
