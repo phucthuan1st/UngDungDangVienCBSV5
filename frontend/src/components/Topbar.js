@@ -1,15 +1,13 @@
 import React from "react";
 import "../styles/Topbar.css";
 import NotiButton from "../images/NotificationButtonLogo.jpg";
+import Logo from "../images/Logo.png";
 
 const Topbar = () => {
     return (
         <div className="Topbar">
             <div className="Logo">
-                <img
-                    src="https://en.hcmus.edu.vn/wp-content/uploads/2022/07/Logo-01.png"
-                    alt="HCMUS"
-                />
+                <img src={Logo} alt="HCMUS" />
             </div>
             <div className="Navigation">
                 <div className="NavButton">

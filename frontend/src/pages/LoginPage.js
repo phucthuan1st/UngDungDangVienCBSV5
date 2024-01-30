@@ -1,12 +1,13 @@
-import { useState,  React } from "react";
+import { useState, React } from "react";
 import "../styles/LoginPage.css";
 import LoginForm from "../components/LoginForm";
+import Logo from "../images/Logo.png";
 
-const LoginPage = ()  => {
+const LoginPage = () => {
     return (
         <div className="LoginPage">
             <div className="logo">
-                <img src="https://en.hcmus.edu.vn/wp-content/uploads/2022/07/Logo-01.png" alt="HCMUS"/>
+                <img src={Logo} alt="HCMUS" />
             </div>
             <LoginForm />
         </div>

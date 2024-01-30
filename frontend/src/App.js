@@ -5,17 +5,21 @@ import {
     Route,
     Navigate,
     Outlet,
+    useLocation,
 } from "react-router-dom";
+import "./styles/common.css";
+import { Helmet } from "react-helmet";
 import LoadingSpinner from "./components/LoadingSpinner";
-import LoginPage from "./pages/LoginPage";
 import AppPage from "./pages/AppPage";
+import LoginPage from "./pages/LoginPage";
 import ErrorPage from "./pages/ErrorPage";
 import { AuthProvider, AuthContext } from "./services/AuthContext";
-import "./styles/common.css";
-
+import DynamicTitle from "./utils/DynamicTitle";
 import { routes } from "./constants/routes";
 
 const App = () => {
+    const location = useLocation();
+
     const PrivateWrapper = () => {
         const { isAuthenticated, isLoading } = useContext(AuthContext);
 
@@ -50,31 +54,33 @@ const App = () => {
 
     return (
         <AuthProvider>
-            <BrowserRouter>
-                <Routes>
-                    {/* Route for the login page, redirect to app page if authenticated */}
-                    <Route path={routes.LOGIN} element={<LoginPageWrapper />} />
+            <Helmet>
+                <title>{DynamicTitle(location.pathname)}</title>
+            </Helmet>
 
-                    {/* Private wrapper to handle authentication */}
-                    <Route element={<PrivateWrapper />}>
-                        {/* Routes accessible only when authenticated */}
-                        <Route path={routes.APP} element={<AppPage />} />
-                        <Route path={routes.ERROR} element={<ErrorPage />} />
+            <Routes>
+                {/* Route for the login page, redirect to app page if authenticated */}
+                <Route path={routes.LOGIN} element={<LoginPageWrapper />} />
 
-                        {/* Default redirect for unauthorized routes */}
-                        <Route
-                            path="*"
-                            element={<Navigate to={routes.APP} replace />}
-                        />
-                    </Route>
+                {/* Private wrapper to handle authentication */}
+                <Route element={<PrivateWrapper />}>
+                    {/* Routes accessible only when authenticated */}
+                    <Route path={routes.APP} element={<AppPage />} />
+                    <Route path={routes.ERROR} element={<ErrorPage />} />
 
-                    {/* Default redirect for unauthenticated users */}
+                    {/* Default redirect for unauthorized routes */}
                     <Route
                         path="*"
-                        element={<Navigate to={routes.LOGIN} replace />}
+                        element={<Navigate to={routes.APP} replace />}
                     />
-                </Routes>
-            </BrowserRouter>
+                </Route>
+
+                {/* Default redirect for unauthenticated users */}
+                <Route
+                    path="*"
+                    element={<Navigate to={routes.LOGIN} replace />}
+                />
+            </Routes>
         </AuthProvider>
     );
 };
