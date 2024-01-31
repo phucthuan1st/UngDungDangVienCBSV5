@@ -5,7 +5,7 @@ const routes = {
 };
 
 const appRoutes = {
-    DASHBOARD: "dashboard",
+    OVERVIEW: "overview",
     COMRADES: "comrades",
     CANDIDATES: "candidates",
     FORMS: "forms",

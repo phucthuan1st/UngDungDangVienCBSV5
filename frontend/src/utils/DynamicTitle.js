@@ -1,6 +1,6 @@
 const TitleMap = {
     "/login": "Đăng nhập",
-    "/app/dashboard": "Trang điều khiển",
+    "/app/overview": "Tổng quan",
     "/app/forms": "Biểu mẫu",
     "/app/documents": "Tài liệu",
     "/app/comrades": "Đảng viên chi bộ",

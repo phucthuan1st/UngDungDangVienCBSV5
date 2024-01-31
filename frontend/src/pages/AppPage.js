@@ -5,7 +5,7 @@ import Topbar from "../components/Topbar";
 import Sidebar from "../components/Sidebar";
 import Candidates from "../components/Candidates";
 import Comrades from "../components/Comrades";
-import Dashboard from "../components/Dashboard";
+import Overview from "../components/Overview";
 import Documents from "../components/Documents";
 import Events from "../components/Events";
 import Forms from "../components/Forms";
@@ -32,8 +32,8 @@ const AppPage = () => {
                             element={<Comrades />}
                         />
                         <Route
-                            path={appRoutes.DASHBOARD}
-                            element={<Dashboard />}
+                            path={appRoutes.OVERVIEW}
+                            element={<Overview />}
                         />
                         <Route
                             path={appRoutes.DOCUMENTS}
@@ -44,7 +44,7 @@ const AppPage = () => {
                         <Route
                             path="*"
                             element={
-                                <Navigate to={appRoutes.DASHBOARD} replace />
+                                <Navigate to={appRoutes.OVERVIEW} replace />
                             }
                         />
                     </Routes>
