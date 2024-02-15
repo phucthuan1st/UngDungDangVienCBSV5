@@ -1,11 +1,11 @@
 :root {
     --blue: #271366;
-    --green: #13663C;
-    --yellow: #BAB528;
-    --white: #E8E8E8;
-    --red: #DB2E25;
+    --green: #13663c;
+    --yellow: #bab528;
+    --white: #e8e8e8;
+    --red: #db2e25;
     --rounded-border: 8px;
-    --box-shadow-style: 5px 5px 5px 5px lightblue;
+    --box-shadow-style: 0 4px 8px 0 lightblue, 0 6px 20px 0 lightblue;
 }
 
 button {

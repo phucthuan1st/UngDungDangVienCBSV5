@@ -1,0 +1,20 @@
+.LeftSidebar ul li {
+    display: flex;
+    box-shadow: var(--box-shadow-style);
+    border-radius: var(--rounded-border);
+    margin: 1.2rem;
+    padding: 0.8rem;
+    user-select: none;
+}
+
+.LeftSidebar ul li:hover {
+    background-color: var(--white);
+    color: var(--blue);
+    user-select: none;
+}
+
+.LeftSidebar ul li.active {
+    color: var(--white);
+    background-color: var(--blue);
+    user-select: none;
+}

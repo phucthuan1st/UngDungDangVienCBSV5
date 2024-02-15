@@ -29,6 +29,8 @@
     height: 100%;
     width: 15%;
     box-shadow: var(--box-shadow-style);
+    align-items: center;
+    justify-content: center;
 }
 
 .ContentContainer .RightContent {

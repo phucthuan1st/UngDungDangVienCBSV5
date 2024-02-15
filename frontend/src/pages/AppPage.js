@@ -1,5 +1,5 @@
-import { useState, React } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import "../styles/AppPage.css";
 import Topbar from "../components/Topbar";
 import Sidebar from "../components/Sidebar";
@@ -12,6 +12,15 @@ import Forms from "../components/Forms";
 import { appRoutes } from "../constants/routes";
 
 const AppPage = () => {
+    const location = useLocation();
+    const [activeSection, setActiveSection] = useState("");
+
+    useEffect(() => {
+        // Extracting the section from the current path
+        const pathSections = location.pathname.split("/");
+        setActiveSection(pathSections[2]); // Using index 1 to get the second element
+    }, [location.pathname]);
+
     return (
         <div className="AppPage">
             <div className="TopbarContainer">
@@ -19,7 +28,7 @@ const AppPage = () => {
             </div>
             <div className="ContentContainer">
                 <div className="LeftSidebar">
-                    <Sidebar />
+                    <Sidebar activeSection={activeSection} />
                 </div>
                 <div className="RightContent">
                     <Routes>

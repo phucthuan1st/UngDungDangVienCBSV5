@@ -1,12 +1,5 @@
 import React, { useContext } from "react";
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Navigate,
-    Outlet,
-    useLocation,
-} from "react-router-dom";
+import { Routes, Route, Navigate, Outlet, useLocation } from "react-router-dom";
 import "./styles/common.css";
 import { Helmet } from "react-helmet";
 import LoadingSpinner from "./components/LoadingSpinner";
