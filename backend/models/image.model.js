@@ -1,32 +1,28 @@
 const Sequelize = require("sequelize-cockroachdb");
 const sequelize = require("../config/Database");
 
-const Event = sequelize.define("PartyEvent", {
+const Image = sequelize.define("Image", {
     Identifier: {
         type: Sequelize.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    EventName: {
+    UserID: {
+        type: Sequelize.DataTypes.INTEGER,
+        allowNull: false,
+    },
+    Base64Image: {
         type: Sequelize.DataTypes.TEXT,
         allowNull: false,
     },
-    EventDetail: {
-        type: Sequelize.DataTypes.TEXT,
-        allowNull: true,
-    },
-    StartedTime: {
+    UploadTime: {
         type: Sequelize.DataTypes.TIMESTAMP,
         allowNull: false,
     },
-    FinishedTime: {
-        type: Sequelize.DataTypes.TIMESTAMP,
-        allowNull: true,
-    },
-    Place: {
-        type: Sequelize.DataTypes.TEXT,
+    IsAvatar: {
+        type: Sequelize.DataTypes.BOOLEAN,
         allowNull: true,
     },
 });
 
-module.exports = Event;
+module.exports = Image;

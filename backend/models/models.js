@@ -2,6 +2,7 @@ const Document = require("./document.model");
 const Event = require("./event.model");
 const Form = require("./form.model");
 const FundPaymentHistory = require("./fundPaymentHistory.model");
+const Image = require("./image.model");
 const LoginCredential = require("./loginCredentials.model");
 const PartyProfileStatus = require("./partyProfileStatus.model");
 const Profile = require("./profile.model");
@@ -23,6 +24,7 @@ module.exports = {
     Event,
     Form,
     FundPaymentHistory,
+    Image,
     LoginCredential,
     PartyProfileStatus,
     Profile,

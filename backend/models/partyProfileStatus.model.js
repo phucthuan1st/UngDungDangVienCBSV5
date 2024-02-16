@@ -2,19 +2,12 @@ const Sequelize = require("sequelize-cockroachdb");
 const sequelize = require("../config/Database");
 
 const PartyProfileStatus = sequelize.define("PartyProfileStatus", {
-    ModifiedOn: {
-        type: Sequelize.DataTypes.DATE,
-        primaryKey: true,
-    },
-    ProfileId: {
+    Identifier: {
         type: Sequelize.DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true,
     },
-    GuidingComradeId: {
-        type: Sequelize.DataTypes.INTEGER,
-        primaryKey: true,
-    },
-    ModifiedDescription: {
+    StatusName: {
         type: Sequelize.DataTypes.TEXT,
         allowNull: false,
     },
