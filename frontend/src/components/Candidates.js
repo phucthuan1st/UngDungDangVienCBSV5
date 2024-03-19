@@ -1,9 +1,12 @@
 import React from "react";
 
-const CandidatesProfile = () => {
+const CandidateProfiles = () => {
     return (
-        <div className="CandidatesProfile">This is CandidatesProfile page</div>
+        <div className="Section" id="CandidateProfiles">
+            <div className="Title">Hồ sơ Đảng vụ</div>
+            <div className="Content"></div>
+        </div>
     );
 };
 
-export default CandidatesProfile;
+export default CandidateProfiles;
