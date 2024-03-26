@@ -1,0 +1,69 @@
+:root {
+    --blue: #271366;
+    --green: #13663c;
+    --yellow: #bab528;
+    --white: #e8e8e8;
+    --red: #db2e25;
+    --rounded-border: 8px;
+    --box-shadow-style: 0 4px 8px 0 lightblue, 0 6px 20px 0 lightblue;
+}
+
+button {
+    background-color: var(--blue);
+    color: var(--white);
+    border-radius: var(--rounded-border);
+    padding: 0.5rem;
+    margin: 1rem;
+}
+
+button:hover {
+    background-color: var(--white);
+    color: var(--blue);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+
+    * {
+        font-family: "Be Vietnam Pro";
+        font-size: 16px;
+    }
+}
+
+input {
+    height: 1.75rem;
+    margin-top: 0.75rem;
+    padding: 0.5rem;
+    background-color: var(--white);
+    border-radius: var(--rounded-border);
+    border-style: none;
+}
+
+img {
+    width: auto;
+    max-height: 85%;
+}
+
+.Section {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    height: 95%;
+}
+
+.Section .Title {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 5%;
+}
+
+.Section .Content {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    color: var(--blue);
+    width: 100%;
+    height: 95%;
+}
