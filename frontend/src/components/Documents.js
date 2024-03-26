@@ -1,12 +1,18 @@
 import React from "react";
+import Section from "./Section";
 
 const Documents = () => {
-    return (
-        <div className="Section" id="Documents">
-            <div className="Title">Tài liệu chung</div>
-            <div className="Content"></div>
-        </div>
-    );
+  const DocumentsContent = () => {
+    return <div className="DocumentsContent"></div>;
+  };
+
+  return (
+    <Section
+      sectionId={"Documents"}
+      sectionName={"Tai lieu"}
+      sectionContent={DocumentsContent}
+    />
+  );
 };
 
 export default Documents;
