@@ -1,15 +1,19 @@
 import { React, useEffect, useState } from "react";
-import mockData from "../mock/mockData.json";
+import mockData from "../mock/mockComradeData.json";
 import { Link } from "react-router-dom";
+import "../styles/ProfileTable.css";
 
 const ComradeProfilesTable = () => {
   const columns = [
-    { Header: "ID", accessor: "id" },
-    { Header: "Họ", accessor: "lastName" }, // Use "Họ" for Last Name in Vietnamese
-    { Header: "Tên", accessor: "firstName" }, // Use "Tên" for First Name in Vietnamese
-    { Header: "Email", accessor: "email" },
-    { Header: "Số điện thoại", accessor: "number" }, // Use "Số điện thoại" for Number in Vietnamese
-    { Header: "Ngày gia nhập", accessor: "dateJoined" }, // Use "Ngày gia nhập" for Date Joined in Vietnamese
+    { Header: "ID", accessor: "ProfileId" },
+    { Header: "Họ", accessor: "LastName" },
+    { Header: "Tên", accessor: "FirstName" },
+    { Header: "Ngày sinh", accessor: "Birthday" },
+    { Header: "Quê quán", accessor: "Hometown" },
+    { Header: "Ngày vào Đảng", accessor: "JoinPartyDate" },
+    { Header: "Vai trò", accessor: "RoleName" },
+    { Header: "Số điện thoại", accessor: "PhoneNumber" },
+    { Header: "Email", accessor: "Email" },
   ];
 
   const [data, setData] = useState([]); // State to hold comrades' data
@@ -40,14 +44,14 @@ const ComradeProfilesTable = () => {
         </thead>
         <tbody>
           {data.map((comrade) => (
-            <tr key={comrade.id}>
+            <tr key={comrade.ProfileId}>
               {columns.map((column) => {
                 // Check if it's the ID column
-                if (column.accessor === "id") {
+                if (column.accessor === "ProfileId") {
                   return (
                     <td key={column.accessor}>
-                      <Link to={`${comrade.id}`}>
-                        {comrade[column.accessor]}
+                      <Link to={`${comrade.ProfileId}`}>
+                        &rarr; {comrade[column.accessor]} &larr;
                       </Link>
                     </td>
                   );

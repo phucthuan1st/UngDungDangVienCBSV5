@@ -1,15 +1,19 @@
 import { React, useEffect, useState } from "react";
-import mockData from "../mock/mockData.json";
+import mockData from "../mock/mockCandidateData.json";
 import { Link } from "react-router-dom";
+import "../styles/ProfileTable.css";
 
 const CandidateProfilesTable = () => {
   const columns = [
-    { Header: "ID", accessor: "id" },
-    { Header: "Họ", accessor: "lastName" }, // Use "Họ" for Last Name in Vietnamese
-    { Header: "Tên", accessor: "firstName" }, // Use "Tên" for First Name in Vietnamese
-    { Header: "Email", accessor: "email" },
-    { Header: "Số điện thoại", accessor: "number" }, // Use "Số điện thoại" for Number in Vietnamese
-    { Header: "Ngày gia nhập", accessor: "dateJoined" }, // Use "Ngày gia nhập" for Date Joined in Vietnamese
+    { Header: "ID", accessor: "ProfileId" },
+    { Header: "Họ", accessor: "LastName" },
+    { Header: "Tên", accessor: "FirstName" },
+    { Header: "Ngày sinh", accessor: "Birthday" },
+    { Header: "Quê quán", accessor: "Hometown" },
+    { Header: "Vai trò", accessor: "RoleName" },
+    { Header: "Số điện thoại", accessor: "PhoneNumber" },
+    { Header: "Email", accessor: "Email" },
+    { Header: "Ngay cap nhat", accessor: "LastUpdateDate" },
   ];
 
   const [data, setData] = useState([]); // State to hold candidates' data
@@ -43,11 +47,11 @@ const CandidateProfilesTable = () => {
             <tr key={candidate.id}>
               {columns.map((column) => {
                 // Check if it's the ID column
-                if (column.accessor === "id") {
+                if (column.accessor === "ProfileId") {
                   return (
                     <td key={column.accessor}>
-                      <Link to={`${candidate.id}`}>
-                        {candidate[column.accessor]}
+                      <Link to={`${candidate.ProfileId}`}>
+                        &rarr; {candidate[column.accessor]} &larr;
                       </Link>
                     </td>
                   );
