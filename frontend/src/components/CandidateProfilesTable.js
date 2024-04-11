@@ -9,6 +9,7 @@ const CandidateProfilesTable = () => {
     { Header: "Họ", accessor: "LastName" },
     { Header: "Tên", accessor: "FirstName" },
     { Header: "Ngày sinh", accessor: "Birthday" },
+    { Header: "Gioi tinh", accessor: "Gender" },
     { Header: "Quê quán", accessor: "Hometown" },
     { Header: "Vai trò", accessor: "RoleName" },
     { Header: "Số điện thoại", accessor: "PhoneNumber" },

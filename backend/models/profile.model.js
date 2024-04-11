@@ -21,6 +21,10 @@ const Profile = sequelize.define("Profile", {
         type: Sequelize.DataTypes.TEXT(30),
         allowNull: false,
     },
+    Gender: {
+        type: Sequelize.DataTypes.TEXT,
+        allowNull: false,
+    },
     // Ngay sinh
     Birthday: {
         type: Sequelize.DataTypes.DATEONLY,

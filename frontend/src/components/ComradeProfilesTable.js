@@ -9,6 +9,7 @@ const ComradeProfilesTable = () => {
     { Header: "Họ", accessor: "LastName" },
     { Header: "Tên", accessor: "FirstName" },
     { Header: "Ngày sinh", accessor: "Birthday" },
+    { Header: "Gioi tinh", accessor: "Gender" },
     { Header: "Quê quán", accessor: "Hometown" },
     { Header: "Ngày vào Đảng", accessor: "JoinPartyDate" },
     { Header: "Vai trò", accessor: "RoleName" },
