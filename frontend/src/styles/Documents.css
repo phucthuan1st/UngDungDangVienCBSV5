@@ -1,0 +1,36 @@
+.Documents {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.Documents .Card {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.Documents .CardTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.Documents .CardDescription {
+  margin-bottom: 10px;
+}
+
+.Documents .CardAuthor {
+  font-style: italic;
+}
+
+.Documents .CardLink {
+  display: inline-block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.Documents .CardLink:hover {
+  text-decoration: underline;
+}
