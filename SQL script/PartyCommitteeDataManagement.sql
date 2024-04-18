@@ -22,7 +22,7 @@ CREATE TABLE Users(
 CREATE TABLE Images(
 	Identifier integer not null,
 	UserID integer not null,
-	Base64Image varchar(max) not null,
+	ImageLink varchar(max) not null,
 	UploadTime timestamp not null,
 	IsAvatar bit,
 	PRIMARY KEY (Identifier)
