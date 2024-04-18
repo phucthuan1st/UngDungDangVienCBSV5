@@ -23,6 +23,7 @@
 
 /* Align ID data to the center  */
 .Content td:first-child {
+  min-width: 4rem;
   text-align: center;
 }
 
