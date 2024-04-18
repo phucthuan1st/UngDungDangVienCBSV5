@@ -1,0 +1,43 @@
+.Content {
+  overflow: auto;
+  height: 100%;
+}
+
+.Content table {
+  border-collapse: collapse;
+}
+
+.Content table thead th {
+  position: sticky;
+  top: 0px;
+}
+
+/* Align the entire first row (header) to the center */
+.Content tr th {
+  padding: 0.5rem;
+  text-align: center;
+  background-color: var(--yellow);
+  color: var(--black);
+  border: 1px solid var(--blue);
+}
+
+/* Align ID data to the center  */
+.Content td:first-child {
+  min-width: 4rem;
+  text-align: center;
+}
+
+/* Target the table cells (td) */
+.Content td {
+  padding: 0.5rem; /* Add some padding for better visual separation */
+  border: 1px solid var(--blue);
+}
+/* Prevent default link styling on visited IDs (assuming link styles cause the purple color) */
+.Content td a:visited {
+  text-decoration: none;
+  color: blue; /* Inherit the default text color from its parent */
+}
+
+.Content td a {
+  text-decoration: none;
+}

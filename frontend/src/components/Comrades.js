@@ -1,9 +1,19 @@
-import React from "react";
+import { React } from "react";
+import { Outlet } from "react-router-dom";
+import Section from "./Section";
 
 const ComradesProfile = () => {
-    return (
-        <div className="ComradesProfile"> This is ComradesProfile page </div>
-    );
+  const Content = () => {
+    return <Outlet />;
+  };
+
+  return (
+    <Section
+      sectionId={"ComradesProfile"}
+      sectionName={"Thong tin Dang vien"}
+      sectionContent={Content}
+    />
+  );
 };
 
 export default ComradesProfile;
