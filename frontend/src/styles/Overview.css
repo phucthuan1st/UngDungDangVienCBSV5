@@ -11,7 +11,8 @@
 
 .ChartContainer {
   min-width: 30%;
-  margin-bottom: 20px;
+  margin: 20px;
+  padding: 2rem;
 }
 
 .ChartTitle {
@@ -30,6 +31,10 @@
   border-radius: 8px;
   display: inline-block;
   margin-right: 20px;
+}
+
+.Chart canvas {
+  height: 80%;
 }
 
 @media (max-width: 1200px) {
