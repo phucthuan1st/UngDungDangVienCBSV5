@@ -2,9 +2,10 @@ const Sequelize = require("sequelize-cockroachdb");
 const sequelize = require("../config/Database");
 
 const Document = sequelize.define("Document", {
-    DocumentId: {
+    Identifier: {
         type: Sequelize.DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
     },
     DocumentDescription: {
         type: Sequelize.DataTypes.TEXT,
