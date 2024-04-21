@@ -22,18 +22,21 @@ Ensure you have [nvm](https://github.com/nvm-sh/nvm) installed. Use the followin
 nvm install --lts
 ```
 
-### Using Yarn
+### Using Yarn (recommended)
 To use Yarn instead of npm, first, make sure you have [Yarn](https://yarnpkg.com/) installed globally:
 ```bash
 npm install -g yarn
 ```
 
-Then, install dependencies for both client and server using:
+Then, install dependencies for backend
 ```bash
-cd UngDungDangVienCBSV5/Client
+cd UngDungDangVienCBSV5/backend
 yarn install
+```
 
-cd ../Server
+Install frontend dependencies
+```bash
+cd UngDungDangVienCBSV5/frontend
 yarn install
 ```
 
@@ -69,26 +72,11 @@ yarn install
     - Log all user activities for audit purposes.
 
 ## Usage
-### Client
-1. Navigate to the client directory:
-   ```bash
-   cd UngDungDangVienCBSV5/Client
-   ```
 
-2. Install client dependencies:
-   ```bash
-   yarn install
-   ```
-
-3. Run the client application:
-   ```bash
-   yarn start
-   ```
-
-### Server
+### Server 
 1. Navigate to the server directory:
    ```bash
-   cd UngDungDangVienCBSV5/Server
+   cd UngDungDangVienCBSV5/backend
    ```
 
 2. Install server dependencies:
@@ -97,6 +85,22 @@ yarn install
    ```
 
 3. Run the server:
+   ```bash
+   yarn start
+   ```
+
+### Then start the Client app (should use another terminal tab)
+1. Navigate to the client directory:
+   ```bash
+   cd UngDungDangVienCBSV5/frontend
+   ```
+
+2. Install client dependencies:
+   ```bash
+   yarn install
+   ```
+
+3. Run the client application:
    ```bash
    yarn start
    ```
