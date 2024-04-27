@@ -85,9 +85,18 @@ yarn install
    ```
 
 3. Run the server:
-   ```bash
-   yarn start
-   ```
+  In order to probably use, you should run the app on port 5000 by specify PORT in .env file
+
+    .env
+  
+    ```
+      PORT=5000
+    ```
+    
+    Then start the server:
+    ```bash
+      yarn start
+    ```
 
 ### Then start the Client app (should use another terminal tab)
 1. Navigate to the client directory:
