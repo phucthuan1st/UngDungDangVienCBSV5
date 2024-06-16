@@ -15,6 +15,7 @@
         "nodemon": "^3.1.0",
         "sequelize": "^6.35.2",
         "sequelize-cockroachdb": "^6.0.5",
+        "texlive": "^1.2.0",
         "validator": "^13.11.0"
     },
     "scripts": {
